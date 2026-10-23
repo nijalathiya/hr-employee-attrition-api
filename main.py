@@ -1,10 +1,18 @@
-
+from fastapi.middleware.cors import CORSMiddleware
 
 from fastapi import FastAPI
 import joblib
 import pandas as pd
 
 app = FastAPI(title="HR Employee Attrition API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 model = joblib.load("hr_attrition_model.pkl")
 
